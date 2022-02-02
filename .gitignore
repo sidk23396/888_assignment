@@ -1,2 +1,12 @@
+# venv
 macenv*
+
+# pycache files
 *__pycache__*
+
+# database files
+*.db
+
+# hidden files
+*.DS_Store*
+.idea*

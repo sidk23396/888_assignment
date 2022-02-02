@@ -1,6 +1,4 @@
-from utils.db_connection_handler import DbConnectionHandler
-
-class DbDelegator(DbConnectionHandler):
-    def __init__(self, table_name) -> None:
+class DbDelegator:
+    def __init__(self, table_name, db_conn_hand) -> None:
         self.table_name = table_name
-        super().__init__()
+        self.db_conn_hand = db_conn_hand
