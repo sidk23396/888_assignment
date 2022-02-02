@@ -1,5 +1,6 @@
 # venv
-macenv*
+*macenv*
+*venv*
 
 # pycache files
 *__pycache__*

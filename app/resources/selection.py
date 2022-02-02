@@ -3,7 +3,7 @@ from sqlite3 import DatabaseError
 from flask import request
 from flask_restful import Resource
 
-from app.custom_exceptions import DataValidationError
+from app.custom_exceptions import DataValidationError, DbOperationError
 from app.models.selection_model import SelectionModel
 from app.utils.data_validator import validate_data
 from app.utils.normalise_data_utils import to_upper, to_2_decimal_places
@@ -35,6 +35,8 @@ class Selection(Resource):
             body = request.get_json()
             _, validated_data = validate_data(_post_schema, body)
             SelectionModel.to_db(**validated_data)
+        except DbOperationError as e:
+            return response_builder(message=str(e), status=409)
         except DataValidationError as e:
             return response_builder(message=str(e), status=400)
         except DatabaseError:

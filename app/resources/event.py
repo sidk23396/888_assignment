@@ -3,7 +3,7 @@ from sqlite3 import DatabaseError
 from flask import request
 from flask_restful import Resource
 
-from app.custom_exceptions import DataValidationError, IncorrectDatetimeFormatException
+from app.custom_exceptions import DataValidationError, DbOperationError, IncorrectDatetimeFormatException
 from app.models.event_model import EventModel
 from app.utils.data_validator import validate_data
 from app.utils.normalise_data_utils import to_datetime, normalise_name, to_upper
@@ -42,6 +42,8 @@ class Events(Resource):
             body = request.get_json()
             _, validated_data = validate_data(_post_schema, body)
             EventModel.to_db(**validated_data)
+        except DbOperationError as e:
+            return response_builder(message=str(e), status=409)
         except DataValidationError as e:
             return response_builder(message=str(e), status=400)
         except DatabaseError:

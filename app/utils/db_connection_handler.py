@@ -105,6 +105,7 @@ class DbConnectionHandler:
     def _get_db_connection(self):
         try:
             db_conn = sqlite3.connect(self.db_name, check_same_thread=False)
+            db_conn.execute("PRAGMA foreign_keys = 1")
             self.cursor = db_conn.cursor()
             print("Successfully Connected to SQLite")
 
