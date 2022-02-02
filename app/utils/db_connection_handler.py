@@ -12,6 +12,7 @@ class DbConnectionHandler:
 
     def get_all_rows(self, table, **filters):
         query = f"""SELECT * FROM {table}"""
+        params = None
         if filters and all([True for v in list(filters.values()) if v != None]):
             conditions = [f"""{c}=?""" for c, v in filters.items() if v != None]
             params = [v for _, v in filters.items() if v != None]

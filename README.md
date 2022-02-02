@@ -58,9 +58,9 @@ optional arguments:
 
 All responses will have one of the following forms
 
-```json
+```
 {
-  "data": "Mixed type holding the content of the response"
+  data in json form
 }
 ```
 
