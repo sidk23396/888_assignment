@@ -1,3 +1,4 @@
+- add logger
 - make use of ODM to serialize/deserialize data, could re-use for data validation from requests
 - currently, the app will accept a request to add the same resource, this should not be allowed.
 - inspect if delegator is really needed
