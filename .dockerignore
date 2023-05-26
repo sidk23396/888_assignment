@@ -1,0 +1,12 @@
+# venv
+*macenv*
+*venv*
+
+# pycache files
+*__pycache__*
+
+.git*
+.dockerignore
+.idea*
+
+*.DS_Store*
